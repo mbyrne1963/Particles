@@ -2,6 +2,16 @@
 #include "math.h"
 #include "vector"
 
+int window_height = 1080;
+int window_width = 1960;
+
+sf::Font program_font;
+sf::Color particle_origin_colour = sf::Color(192,192,192);
+sf::Color particle_accellerating_colour = sf::Color(255,128,0);
+sf::Color particle_decellerating_colour = sf::Color(0,0,255);
+sf::Color gravity_source_colour = sf::Color(255,0,0);
+
+
 class GravitySource {
     sf::Vector2f position;
     sf::Vector2f velocity;
@@ -16,8 +26,8 @@ public:
         this->strength = p_strength;
 
         s.setPosition(position);
-        s.setFillColor(sf::Color::Red);
-        s.setRadius((strength / 1000));
+        s.setFillColor(gravity_source_colour);
+        s.setRadius(4);
     }
 
     void render(sf::RenderWindow &wind) {
@@ -41,24 +51,35 @@ public:
 
 class Particle {
     sf::Vector2f position;
+    sf::Vector2f initial_position;
     sf::Vector2f velocity;
     float strength;
-    sf::CircleShape cs;
+    int number_of_cyles = 0;
+    float current_speed = 0;
+    float previous_speed = 0;
+    sf::CircleShape particle_shape;
+    sf::CircleShape particle_source;
     bool is_visible = true;
 
 
 public:
     Particle(float pos_x, float pos_y, float vel_x, float vel_y) {
+        initial_position.x = pos_x;
+        initial_position.y = pos_y;
         position.x = pos_x;
         position.y = pos_y;
 
         velocity.x = vel_x;
         velocity.y = vel_y;
-        strength=1;
+        strength = 1;
 
-        cs.setPosition(position);
-        cs.setFillColor(sf::Color::Black);
-        cs.setRadius(3);
+        particle_shape.setPosition(position);
+        particle_shape.setFillColor(particle_origin_colour);
+        particle_shape.setRadius(3);
+
+        particle_source.setPosition(initial_position);
+        particle_source.setFillColor(particle_origin_colour);
+        particle_source.setRadius(2);
     }
 
     ~Particle() {
@@ -69,27 +90,40 @@ public:
         return is_visible;
     }
 
+    void setVisible(bool p_visible) {
+        is_visible = p_visible;
+    }
+
     sf::Vector2f getPosition() {
         return position;
+    }
+
+    sf::Vector2f getVelocity() {
+        return velocity;
     }
 
     float get_strength() {
         return strength;
     }
 
-
     void setColour(sf::Color colour) {
-        cs.setFillColor(colour);
+        particle_shape.setFillColor(colour);
     }
 
     void render(sf::RenderWindow &wind) {
         if (is_visible) {
-            cs.setPosition(position);
-            wind.draw(cs);
-        }
+            particle_shape.setPosition(position);
+            wind.draw(particle_shape);
+        };
+        particle_source.setFillColor(particle_origin_colour);
+        wind.draw(particle_source);
     }
 
-    sf::Vector2f CalculateAccelerationFromGravitySource(GravitySource &s) {
+    float CalculateParticleVelocity() const {
+        return sqrt((pow(velocity.x, 2.0f) + pow(velocity.y, 2.0f)));
+    }
+
+    sf::Vector2f CalculateAccelerationFromGravitySource(GravitySource &s) const {
         float distance_x = s.getPosition().x - position.x;
         float distance_y = s.getPosition().y - position.y;
 
@@ -132,6 +166,7 @@ public:
     }
 
     void UpdatePhysicsfromGravitySources(GravitySource &s1, GravitySource &s2) {
+        number_of_cyles++;
         sf::Vector2f acceleration = CalculateAccelerationFromGravitySource(s1);
 
         velocity.x += acceleration.x;
@@ -148,14 +183,22 @@ public:
         position.x += velocity.x;
         position.y += velocity.y;
 
-        if (position.x > 1980 || position.x < 0)
+        current_speed = CalculateParticleVelocity();
+
+        if (current_speed > previous_speed)
+            setColour(particle_accellerating_colour);
+        else
+            setColour(particle_decellerating_colour);
+        previous_speed = current_speed;
+
+        if (position.x > window_width || position.x < 0)
             is_visible = false;
-        if (position.y > 1080 || position.y < 0)
+        if (position.y > window_height || position.y < 0)
             is_visible = false;
     }
 
     void UpdatePhysicsfromAnotherParticle(Particle &p) {
-        sf::Vector2f acceleration = CalculateAccelerationFromAnotherParticle( p);
+        sf::Vector2f acceleration = CalculateAccelerationFromAnotherParticle(p);
 
         velocity.x += acceleration.x;
         velocity.y += acceleration.y;
@@ -164,15 +207,16 @@ public:
         position.y += velocity.y;
 
         is_visible = true;
-        if (position.x > 1980 || position.x < 0)
+        if (position.x > window_width || position.x < 0)
             is_visible = false;
-        if (position.y > 1080 || position.y < 0)
+        if (position.y > window_height || position.y < 0)
             is_visible = false;
     }
 
 };
 
-float postionbetweentwoparticles(Particle &p1, Particle &p2) {
+
+float CalculateDistanceBetweenTwoParticles(Particle &p1, Particle &p2) {
     sf::Vector2f pos1, pos2;
     pos1 = p1.getPosition();
     pos2 = p2.getPosition();
@@ -184,21 +228,18 @@ float postionbetweentwoparticles(Particle &p1, Particle &p2) {
 }
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(1960, 1080), "Particle Modelling");
-    window.setFramerateLimit(60);
 
-    GravitySource source1(800, 500, 0);
-    GravitySource source2(600, 300, 4000);
+    sf::RenderWindow window(sf::VideoMode(window_width, window_height), "Particle Modelling");
+    window.setFramerateLimit(60);
+    program_font.loadFromFile("../fonts/arial.ttf");
+
+    GravitySource source1(window_width / 3, window_height / 2, 1000);
+    GravitySource source2(window_width / 3 * 2, window_height / 2, 1000);
 
     std::vector<Particle> particles;
 
-    for (int i = 0; i <= 100; i++) {
-        particles.push_back(Particle(1000 - i, 400, 1, 2));
-    }
 
-    int count_number_visible = particles.capacity();
-
-    while (window.isOpen() && count_number_visible != 0) {
+    while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) window.close();
@@ -212,36 +253,46 @@ int main() {
                 source2.increase_strength(-1000);
                 source2.render(window);
             }
-            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-            {
-                    sf::Vector2i MousePosition = sf::Mouse::getPosition();
-                    particles.push_back(Particle((float) MousePosition.x,(float) MousePosition.y, 1.0f, 1.0f));
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+                sf::Vector2i MousePosition = sf::Mouse::getPosition();
+                particles.push_back(Particle((float) MousePosition.x, (float) MousePosition.y, 1, 1));
             }
+            if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
+                sf::Vector2i MousePosition = sf::Mouse::getPosition();
+                particles.push_back(Particle((float) MousePosition.x, (float) MousePosition.y, -1.0f, -1.0f));
             }
-
-
+        }
         window.clear(sf::Color::White);
 
         source1.render(window);
         source2.render(window);
 
-        count_number_visible = 0;
 
         for (auto part = particles.begin(); part != particles.end();) {
             part->UpdatePhysicsfromGravitySources(source1, source2);
             // Check if the particle should be removed
+
+            //now need to check to see if the particle is in the same location as another
+
+          // for (auto part2 = particles.begin(); part != particles.end();) {
+          //      if (part->getPosition().x == part2->getPosition().x &&
+          //          part->getPosition().y == part2->getPosition().y) {
+          //          if (part->getVelocity().x != part2->getVelocity().x ||
+          //              part->getVelocity().y != part2->getVelocity().y)
+          //              part->setVisible(false);
+          //      }
+          //  }
             if (!part->getVisible()) {
                 particles.erase(part);
             } else {
-                count_number_visible++;
                 part->render(window);
                 ++part;
             }
         }
-    //draw calls
-    window.display();
-}
+        //draw calls
+        window.display();
+    }
 
 
-return 0;
+    return 0;
 }

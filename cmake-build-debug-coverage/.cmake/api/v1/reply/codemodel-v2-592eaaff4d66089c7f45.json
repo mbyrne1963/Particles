@@ -30,14 +30,14 @@
 						2
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.sfml-build-Debug-9d4f67f8f6bb286cdd39.json",
+					"jsonFile" : "directory-_deps.sfml-build-Debug-f278404fc1279472dc9d.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.7.2"
 					},
 					"parentIndex" : 0,
 					"projectIndex" : 1,
-					"source" : "cmake-build-debug/_deps/sfml-src"
+					"source" : "cmake-build-debug-coverage/_deps/sfml-src"
 				},
 				{
 					"build" : "_deps/sfml-build/src/SFML",
@@ -51,26 +51,26 @@
 						8
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.sfml-build.src.SFML-Debug-59858f26345abeca2d61.json",
+					"jsonFile" : "directory-_deps.sfml-build.src.SFML-Debug-ff8b23dcba4eb9656202.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.7.2"
 					},
 					"parentIndex" : 1,
 					"projectIndex" : 1,
-					"source" : "cmake-build-debug/_deps/sfml-src/src/SFML"
+					"source" : "cmake-build-debug-coverage/_deps/sfml-src/src/SFML"
 				},
 				{
 					"build" : "_deps/sfml-build/src/SFML/System",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.sfml-build.src.SFML.System-Debug-64c1891ccaefb04233e9.json",
+					"jsonFile" : "directory-_deps.sfml-build.src.SFML.System-Debug-90e0d25a2160c3f51394.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.7.2"
 					},
 					"parentIndex" : 2,
 					"projectIndex" : 1,
-					"source" : "cmake-build-debug/_deps/sfml-src/src/SFML/System",
+					"source" : "cmake-build-debug-coverage/_deps/sfml-src/src/SFML/System",
 					"targetIndexes" : 
 					[
 						5
@@ -79,14 +79,14 @@
 				{
 					"build" : "_deps/sfml-build/src/SFML/Main",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Main-Debug-bdb82167263e7f4fc40a.json",
+					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Main-Debug-555138eb3f0fdad37548.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.7.2"
 					},
 					"parentIndex" : 2,
 					"projectIndex" : 1,
-					"source" : "cmake-build-debug/_deps/sfml-src/src/SFML/Main",
+					"source" : "cmake-build-debug-coverage/_deps/sfml-src/src/SFML/Main",
 					"targetIndexes" : 
 					[
 						3
@@ -95,14 +95,14 @@
 				{
 					"build" : "_deps/sfml-build/src/SFML/Window",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Window-Debug-6d1a9166480d766690a3.json",
+					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Window-Debug-e3a7d0fad2a342062514.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.7.2"
 					},
 					"parentIndex" : 2,
 					"projectIndex" : 1,
-					"source" : "cmake-build-debug/_deps/sfml-src/src/SFML/Window",
+					"source" : "cmake-build-debug-coverage/_deps/sfml-src/src/SFML/Window",
 					"targetIndexes" : 
 					[
 						6
@@ -111,14 +111,14 @@
 				{
 					"build" : "_deps/sfml-build/src/SFML/Network",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Network-Debug-eb847b6f3f63bf8c66c0.json",
+					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Network-Debug-9aa44bc9f564dfb28cce.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.7.2"
 					},
 					"parentIndex" : 2,
 					"projectIndex" : 1,
-					"source" : "cmake-build-debug/_deps/sfml-src/src/SFML/Network",
+					"source" : "cmake-build-debug-coverage/_deps/sfml-src/src/SFML/Network",
 					"targetIndexes" : 
 					[
 						4
@@ -127,14 +127,14 @@
 				{
 					"build" : "_deps/sfml-build/src/SFML/Graphics",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Graphics-Debug-7ee2eb7ea6bae0aa95f8.json",
+					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Graphics-Debug-3e0c2eafc14e6abde6a8.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.7.2"
 					},
 					"parentIndex" : 2,
 					"projectIndex" : 1,
-					"source" : "cmake-build-debug/_deps/sfml-src/src/SFML/Graphics",
+					"source" : "cmake-build-debug-coverage/_deps/sfml-src/src/SFML/Graphics",
 					"targetIndexes" : 
 					[
 						2
@@ -143,14 +143,14 @@
 				{
 					"build" : "_deps/sfml-build/src/SFML/Audio",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Audio-Debug-79e5ad9d6abb0a3b3dff.json",
+					"jsonFile" : "directory-_deps.sfml-build.src.SFML.Audio-Debug-bffa3912b634ff5ba4bb.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.7.2"
 					},
 					"parentIndex" : 2,
 					"projectIndex" : 1,
-					"source" : "cmake-build-debug/_deps/sfml-src/src/SFML/Audio",
+					"source" : "cmake-build-debug-coverage/_deps/sfml-src/src/SFML/Audio",
 					"targetIndexes" : 
 					[
 						1
@@ -205,49 +205,49 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "CMakeSFMLProject::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-CMakeSFMLProject-Debug-04a0d37b6715860b1d2d.json",
+					"jsonFile" : "target-CMakeSFMLProject-Debug-1719693dedaa91e5465f.json",
 					"name" : "CMakeSFMLProject",
 					"projectIndex" : 0
 				},
 				{
 					"directoryIndex" : 8,
 					"id" : "sfml-audio::@a153e5727587c53fce98",
-					"jsonFile" : "target-sfml-audio-Debug-f1e75dbb1e1302537c11.json",
+					"jsonFile" : "target-sfml-audio-Debug-f05fd60a8927c38765d1.json",
 					"name" : "sfml-audio",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 7,
 					"id" : "sfml-graphics::@98af38147d5fa7e70f61",
-					"jsonFile" : "target-sfml-graphics-Debug-44929435d35843c8b9b2.json",
+					"jsonFile" : "target-sfml-graphics-Debug-0159f37335af8ff62a42.json",
 					"name" : "sfml-graphics",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 4,
 					"id" : "sfml-main::@81ec5539f1398dd625f6",
-					"jsonFile" : "target-sfml-main-Debug-b1c7b2ff1d0f25944bc2.json",
+					"jsonFile" : "target-sfml-main-Debug-19afc7d62dd2861a30a8.json",
 					"name" : "sfml-main",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 6,
 					"id" : "sfml-network::@d7f79968b2699e7782cb",
-					"jsonFile" : "target-sfml-network-Debug-000ba5d7934b78026d65.json",
+					"jsonFile" : "target-sfml-network-Debug-2cddf2902a30ec6f66f2.json",
 					"name" : "sfml-network",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 3,
 					"id" : "sfml-system::@8cb1db2982443611e568",
-					"jsonFile" : "target-sfml-system-Debug-c38509f8e0e2b1d45916.json",
+					"jsonFile" : "target-sfml-system-Debug-95e4edac780ad765c455.json",
 					"name" : "sfml-system",
 					"projectIndex" : 1
 				},
 				{
 					"directoryIndex" : 5,
 					"id" : "sfml-window::@5730451e331e3690ae65",
-					"jsonFile" : "target-sfml-window-Debug-6bdc5513615ad1087cd0.json",
+					"jsonFile" : "target-sfml-window-Debug-ab0161eb92b723bb0af9.json",
 					"name" : "sfml-window",
 					"projectIndex" : 1
 				}
@@ -257,7 +257,7 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/mbyrn/CLionProjects/Particles/cmake-build-debug",
+		"build" : "C:/Users/mbyrn/CLionProjects/Particles/cmake-build-debug-coverage",
 		"source" : "C:/Users/mbyrn/CLionProjects/Particles"
 	},
 	"version" : 
